@@ -1,53 +1,75 @@
-import { useRef, useState } from 'react'
+import { useRef, useState } from "react";
 
-import './App.css'
+import "./App.css";
+
 
 function App() {
+  const emailRef = useRef(null);
+  const passwordRef = useRef(null);
+  const [text, setText] = useState(null);
+  const [errors, setErrors] = useState(null)
 
-const emailRef = useRef(null)
-const passwordRef = useRef(null)
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const data = {
+      email: emailRef.current.value,
+      password: passwordRef.current.value,
+    };
+    try {
+      const response = await fetch("http://localhost:3001/user/register", {
+        method: "POST", // *GET, POST, PUT, DELETE, etc.
+        mode: "cors", // no-cors, *cors, same-origin
+        cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+        credentials: "same-origin", // include, *same-origin, omit
+        headers: {
+          "Content-Type": "application/json",
+          // 'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        redirect: "follow", // manual, *follow, error
+        referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+        body: JSON.stringify(data),
+      });
 
-const handleSubmit = async (e) => {
-  e.preventDefault()
-  const data = {
-    email: emailRef.current.value,
-    password: passwordRef.current.value,
-  }
-  try{
-    await fetch('http://localhost:3001/user/register',{
-      method: "POST", // *GET, POST, PUT, DELETE, etc.
-    mode: "cors", // no-cors, *cors, same-origin
-    cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
-    credentials: "same-origin", // include, *same-origin, omit
-    headers: {
-      "Content-Type": "application/json",
-      // 'Content-Type': 'application/x-www-form-urlencoded',
-    },
-    redirect: "follow", // manual, *follow, error
-    referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-    body: JSON.stringify(data),
-    })
-
-  } catch(error) {
-    console.log(error)
-  }
-}
+      const result = await response.json()
+      if(response.ok){
+        console.log(result.data)
+        setText(result.data)
+      }else {
+        setText(result.errorMessage);
+        if(result.errors){
+          setErrors(result.errors)
+      } 
+      }
+    } catch (error) {
+      console.error(error);
+       setText('Failed to communicate with the server.');
+    }
+  };
 
   return (
     <>
-     <form method="post" onSubmit={handleSubmit}>
-      <label htmlFor="email">email:
-      <input type="email" name="email" id="email" ref={emailRef}/>
-      </label>
-      <br />
-        <label htmlFor="password">Password
-        <input type="password" name="password" id="password"ref={passwordRef} />
+      {text === null ? <></> : <p>{text}</p>}
+      <form method="post" onSubmit={handleSubmit}>
+        <label htmlFor="email">
+          email:
+          <input type="email" name="email" id="email" ref={emailRef} />
+        </label>
+        <br />
+        <label htmlFor="password">
+          Password
+          <input
+            type="password"
+            name="password"
+            id="password"
+            ref={passwordRef}
+          />
+          {errors ? errors.map((error, index) => {return <p key={index}>{error.msg}</p>}) : null}
         </label>
         <br />
         <button type="submit">Submit</button>
-     </form>
+      </form>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
