@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react'
-
+//nofunciona@gmail.com
+//Abc123
 const LogIn = () => {
   const emailRef = useRef(null)
   const passwordRef = useRef(null)
@@ -11,7 +12,7 @@ const LogIn = () => {
 
     const data = {
       email: emailRef.current.value,
-      Password: passwordRef.current.value
+      password: passwordRef.current.value
     }
 
     try {
@@ -28,7 +29,7 @@ const LogIn = () => {
       const result = await response.json()
       if (response.ok) {
         localStorage.setItem("token", result.token)
-        console.log(result.data)
+
         setText(result.data)
       } else {
         setText(result.errorMessage)
@@ -68,4 +69,3 @@ const LogIn = () => {
 }
 
 export default LogIn
-
