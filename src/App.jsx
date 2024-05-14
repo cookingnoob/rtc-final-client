@@ -2,28 +2,17 @@ import { useRef, useState } from "react";
 
 import "./App.css";
 import SignUp from "./pages/SignUp";
+import LogIn from "./pages/LogIn";
 
 
-//PAGINAS
-//sign up
-//name
-//email
-//password
-//boton de enviar formulario
-//log in
-//email
-//password
-//boton de enviar formulario
-//main page
-//side con todos los todo
-//main content mostrando los to-dos
 
 function App() {
 
 
   return (
     <>
-      <SignUp />
+      {/* <SignUp /> */}
+      <LogIn />
     </>
   );
 }
