@@ -1,68 +1,32 @@
-import React, { useState, useRef } from 'react'
+import { Button, TextField, Typography } from '@mui/material'
+import React, { useRef } from 'react'
+import useLogin from '../hooks/useLogin'
 //nofunciona@gmail.com
 //Abc123
+
 const LogIn = () => {
   const emailRef = useRef(null)
   const passwordRef = useRef(null)
-  const [text, setText] = useState(null)
-  const [errors, setErrors] = useState(null)
+  const { text, errors, authorized, login } = useLogin()
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const data = {
-      email: emailRef.current.value,
-      password: passwordRef.current.value
-    }
+    const email = emailRef.current.value
+    const password = passwordRef.current.value
 
-    try {
-      const response = await fetch('http://localhost:3001/user/login', {
-        method: 'POST',
-        mode: 'cors',
-        cache: 'no-cache',
-        credentials: 'same-origin',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-      })
-      const result = await response.json()
-      if (response.ok) {
-        localStorage.setItem("token", result.token)
-
-        setText(result.data)
-      } else {
-        setText(result.errorMessage)
-        if (result.errors) {
-          setErrors(result.errors)
-        }
-      }
-    } catch (error) {
-      console.error(error)
-      setErrors('error al comunicarse con el servidor')
-    }
+    login({ email, password })
   }
   return (
     <>
-      {text === null ? <></> : <p>{text}</p>}
+      <Typography>{text}</Typography>
       <form method="post" onSubmit={handleSubmit}>
-        <label htmlFor="email">
-          email:
-          <input type="email" name="email" id="email" ref={emailRef} />
-        </label>
+        <TextField label="email" type="email" name="email" id="email" inputRef={emailRef} />
         <br />
-        <label htmlFor="password">
-          Password
-          <input
-            type="password"
-            name="password"
-            id="password"
-            ref={passwordRef}
-          />
-          {errors ? errors.map((error, index) => { return <p key={index}>{error.msg}</p> }) : null}
-        </label>
+        <TextField label='password' type="password" name="password" id="password" inputRef={passwordRef} />
+        {errors ? errors.map((error, index) => { return <p key={index}>{error.msg}</p> }) : null}
         <br />
-        <button type="submit">Submit</button>
+        <Button type='submit'>Submit</Button>
       </form>
     </>
   )
