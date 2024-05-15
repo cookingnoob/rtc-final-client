@@ -17,6 +17,7 @@ function App() {
       <nav>
         <NavLink to="signup">Reigstrate</NavLink>
         <NavLink to="login">Login</NavLink>
+        <NavLink to='shared-lists'>Listas compartidas</NavLink>
       </nav>
       <main>
         <Outlet />
