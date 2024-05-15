@@ -1,33 +1,27 @@
-import { useRef, useState } from "react";
+import { NavLink, Outlet } from "react-router-dom";
 import "./App.css";
-import SignUp from "./pages/SignUp";
-import LogIn from "./pages/LogIn";
-
-//COMPONENTES
-//navbar
-//liga de login
-//liga de signup
-//
-//main page
-//formularios
-//componente input password
-//componente input correo
-//componente input usuername
-//boton enviar login
-//boton enviar signup
-//input nuevo todo descripcion
-//acordeon con inputs de notas, date
-//boton para cambiar done al to-do
-//boton para eliminar el todo
-//boton para agregar nueva lista
+//login
+//sign up
+//mostrar to-dos globales
+//mostrar todos de usuario
+//editar usuario
 
 
 function App() {
 
   return (
     <>
-      {/* <SignUp /> */}
-      <LogIn />
+      <header>
+        <h1>To-do</h1>
+      </header>
+      <nav>
+        <NavLink to="signup">Reigstrate</NavLink>
+        <NavLink to="login">Login</NavLink>
+      </nav>
+      <main>
+        <Outlet />
+      </main>
+      <footer>By Alan Coste</footer>
     </>
   );
 }

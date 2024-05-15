@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useRef, useState } from 'react'
 
 const SignUp = () => {
   const emailRef = useRef(null);
@@ -9,11 +9,13 @@ const SignUp = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     const data = {
       email: emailRef.current.value,
       name: nameRef.current.value,
       password: passwordRef.current.value,
     };
+
     try {
       const response = await fetch("http://localhost:3001/user/register", {
         method: "POST", // *GET, POST, PUT, DELETE, etc.
@@ -22,10 +24,9 @@ const SignUp = () => {
         credentials: "same-origin", // include, *same-origin, omit
         headers: {
           "Content-Type": "application/json",
-          // 'Content-Type': 'application/x-www-form-urlencoded',
         },
-        redirect: "follow", // manual, *follow, error
-        referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+        redirect: "follow",
+        referrerPolicy: "no-referrer",
         body: JSON.stringify(data),
       });
 
@@ -45,6 +46,7 @@ const SignUp = () => {
       setText('Failed to communicate with the server.');
     }
   };
+
   return (
     <>
       {text === null ? <></> : <p>{text}</p>}

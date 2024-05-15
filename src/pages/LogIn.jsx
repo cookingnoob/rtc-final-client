@@ -11,12 +11,11 @@ const LogIn = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     const email = emailRef.current.value
     const password = passwordRef.current.value
-
     login({ email, password })
   }
+
   return (
     <>
       <Typography>{text}</Typography>
