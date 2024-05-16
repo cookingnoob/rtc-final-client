@@ -8,6 +8,7 @@ import SignUp from './pages/SignUp.jsx'
 import GlobalLists from './pages/GlobalLists.jsx'
 import SingleList from './pages/SingleList.jsx'
 import Dashboard from './pages/Dashboard.jsx'
+import PrivateRoute from './components/PrivateRoute.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -19,6 +20,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Route path='shared-lists' element={<GlobalLists />} />
           <Route path='list/:id' element={<SingleList />} />
           <Route path='dashboard' element={<Dashboard />} />
+          <Route path='private' element={<PrivateRoute />} />
           <Route
             path="*"
             element={
