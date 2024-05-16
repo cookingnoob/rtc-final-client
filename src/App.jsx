@@ -1,5 +1,6 @@
 import { NavLink, Outlet } from "react-router-dom";
 import "./App.css";
+import SingleList from "./pages/SingleList";
 //login
 //sign up
 //mostrar to-dos globales
@@ -11,7 +12,7 @@ function App() {
 
   return (
     <>
-      <header>
+      {/* <header>
         <h1>To-do</h1>
       </header>
       <nav>
@@ -22,7 +23,8 @@ function App() {
       <main>
         <Outlet />
       </main>
-      <footer>By Alan Coste</footer>
+      <footer>By Alan Coste</footer> */}
+      <SingleList />
     </>
   );
 }

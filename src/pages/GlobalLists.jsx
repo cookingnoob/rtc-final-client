@@ -21,8 +21,10 @@ const GlobalLists = () => {
       {sharedLists ? (
         sharedLists.map((list, index) => (
           <div key={index}>
-            <img src={list.user.avatar} height='30px' />
-            <p>{list.user.name}</p>
+            <div>
+              <img src={list.user.avatar} height='100px' />
+              <p>{list.user.name}</p>
+            </div>
             <NavLink >{list.listName}</NavLink >
           </div>
         ))
