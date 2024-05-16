@@ -6,6 +6,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import LogIn from './pages/LogIn.jsx'
 import SignUp from './pages/SignUp.jsx'
 import GlobalLists from './pages/GlobalLists.jsx'
+import SingleList from './pages/SingleList.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -15,6 +16,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Route path='login' index element={<LogIn />} />
           <Route path='signup' index element={<SignUp />} />
           <Route path='shared-lists' element={<GlobalLists />} />
+          <Route path='list/:id' element={<SingleList />} />
           <Route
             path="*"
             element={

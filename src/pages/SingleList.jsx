@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import TodoCard from '../components/TodoCard'
+import { useParams } from 'react-router-dom'
 
 
 const SingleList = () => {
   const [list, setList] = useState(null)
   const [todos, setTodos] = useState(null)
+  const { id } = useParams()
+
   useEffect(() => {
     const getList = async () => {
       try {
-        const response = await fetch('http://localhost:3001/lists/663f0fc8e1262976e1951c72')
+        const response = await fetch(`http://localhost:3001/lists/${id}`)
         const result = await response.json()
         setList(result.list)
         setTodos(result.todos.sort((a, b) => a.order - b.order))

@@ -12,7 +12,7 @@ function App() {
 
   return (
     <>
-      {/* <header>
+      <header>
         <h1>To-do</h1>
       </header>
       <nav>
@@ -23,8 +23,8 @@ function App() {
       <main>
         <Outlet />
       </main>
-      <footer>By Alan Coste</footer> */}
-      <SingleList />
+      <footer>By Alan Coste</footer>
+      {/* <SingleList /> */}
     </>
   );
 }

@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 
 const GlobalLists = () => {
   const [sharedLists, setSharedLists] = useState(null)
+
   useEffect(() => {
     const getGlobalLists = async () => {
       try {
@@ -16,6 +17,8 @@ const GlobalLists = () => {
     }
     getGlobalLists()
   }, [])
+
+
   return (
     <div>
       {sharedLists ? (
@@ -25,7 +28,7 @@ const GlobalLists = () => {
               <img src={list.user.avatar} height='100px' />
               <p>{list.user.name}</p>
             </div>
-            <NavLink >{list.listName}</NavLink >
+            <NavLink to={`/list/${list._id}`}>{list.listName}</NavLink >
           </div>
         ))
       ) : (
