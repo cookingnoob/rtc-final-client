@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
+
 const SingleList = () => {
   const [list, setList] = useState(null)
   const [todos, setTodos] = useState(null)
@@ -9,7 +10,10 @@ const SingleList = () => {
         const response = await fetch('http://localhost:3001/lists/663f0fc8e1262976e1951c72')
         const result = await response.json()
         setList(result.list)
-        setTodos(result.todos)
+        // const sortedTodos = result.data.sort((a, b) => a.order - b.order);
+
+        const orderedTodos = result.todos.sort((a, b) => a.order - b.order)
+        setTodos(orderedTodos)
       } catch (error) {
         console.error(error)
       }
