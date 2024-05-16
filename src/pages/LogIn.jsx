@@ -1,11 +1,20 @@
 import { Button, TextField, Typography } from '@mui/material'
-import React, { useRef } from 'react'
+import React, { useEffect, useRef } from 'react'
 import useLogin from '../hooks/useLogin'
+import { redirect, useNavigate } from 'react-router-dom'
 
 const LogIn = () => {
   const emailRef = useRef(null)
   const passwordRef = useRef(null)
+  const navigate = useNavigate()
   const { text, errors, authorized, login } = useLogin()
+
+  useEffect(() => {
+    const token = sessionStorage.getItem('token')
+    if (authorized === true && token) {
+      navigate('/dashboard')
+    }
+  }, [authorized])
 
   const handleSubmit = async (e) => {
     e.preventDefault();

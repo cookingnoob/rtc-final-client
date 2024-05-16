@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 const useLogin = () => {
   const [text, setText] = useState(null)
   const [errors, setErrors] = useState(null)
-  const [authorized, setAuthorized] = useState(false);
+  const [authorized, setAuthorized] = useState(false)
 
   const login = async (data) => {
     try {
@@ -20,8 +20,9 @@ const useLogin = () => {
 
       const result = await response.json()
       if (response.ok) {
-        localStorage.setItem("token", result.token)
+        sessionStorage.setItem("token", result.token)
         setText(result.data)
+        setAuthorized(true)
       } else {
         setText(result.errorMessage);
         if (result.errors) {

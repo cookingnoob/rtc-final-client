@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import TodoCard from '../components/TodoCard'
-import { useParams } from 'react-router-dom'
+import { NavLink, useParams } from 'react-router-dom'
 
 
 const SingleList = () => {
@@ -25,6 +25,7 @@ const SingleList = () => {
     //volvera poner que la ruta esta protegida en el backend
 
     <div>
+      <NavLink to={'/shared-lists'}>Volver</NavLink>
       {
         list ?
           <div>
