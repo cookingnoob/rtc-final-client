@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
+import Context from './Context'
 
 const ListsSideBar = () => {
-  const [userLists, setUserLists] = useState(null)
-  const [listTodos, setListTodos] = useState(null)
+  const { userLists, setUserLists } = useContext(Context)
+
 
   useEffect(() => {
     const getUserInfo = async () => {
