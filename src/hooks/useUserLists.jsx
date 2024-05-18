@@ -1,8 +1,11 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 
 const useUserLists = () => {
-  const [userLists, setUserLists] = useState(null)
+
+  const [userLists, setUserLists] = useContext(null)
+
   const getUserInfo = async () => {
+
     const token = sessionStorage.getItem('token')
     const response = await fetch("http://localhost:3001/lists/user", {
       method: "GET", // *GET, POST, PUT, DELETE, etc.
