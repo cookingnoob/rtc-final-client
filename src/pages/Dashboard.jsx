@@ -7,12 +7,13 @@ import { useNavigate } from 'react-router-dom'
 const Dashboard = () => {
   const navigate = useNavigate()
   const { error } = useContext(Context)
-  useEffect(() => {
 
-    if (error) {
+  useEffect(() => {
+    if (!!error) {
       navigate('/login')
     }
-  }, [error])
+  }, [])
+
   return (
     <>
       <ListsSideBar />
