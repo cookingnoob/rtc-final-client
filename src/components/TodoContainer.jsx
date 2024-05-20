@@ -8,7 +8,6 @@ const TodoContainer = () => {
       if (!userLists) {
         return
       } else {
-
         const token = sessionStorage.getItem('token')
         const todosResponse = await fetch(`http://localhost:3001/lists/${userLists[0]._id}`, {
           method: "GET", // *GET, POST, PUT, DELETE, etc.
@@ -23,6 +22,7 @@ const TodoContainer = () => {
           referrerPolicy: "no-referrer",
         });
         const todosResult = await todosResponse.json()
+        console.log(todosResult)
         setListTodos(todosResult.todos)
       }
     }
@@ -35,6 +35,7 @@ const TodoContainer = () => {
           {listTodos.map((todo, index) => (
             <div key={index}>
               <div>
+                <input type="text" name="to-do" />
                 <p>{todo.description}</p>
               </div>
             </div>

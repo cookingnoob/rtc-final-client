@@ -4,12 +4,22 @@ import TodoContainer from '../components/TodoContainer'
 import { Context } from '../components/Context'
 
 const Dashboard = () => {
-
+  const { error } = useContext(Context)
 
   return (
     <>
-      <ListsSideBar />
-      <TodoContainer />
+      {error ?
+        <>
+          <p>Inicia sesion</p>
+        </>
+        :
+        <>
+          <ListsSideBar />
+          <TodoContainer />
+
+        </>
+      }
+
     </>
   )
 }
